@@ -9,53 +9,62 @@
 </head>
 
 <body>
-    <div class="autorization">
-        <div class="log">
-            <p><b>Регистрация</b></p>
-            <input type="text" id="login" placeholder="Введите имя:">
-            <button id="reg">Регистрация</button>
-        </div>
-    </div>
     <div class="app">
-        <div class="screen join-screen ">
+        <div class="screen join-screen active" id="auth">
             <div class="form">
+
                 <h2>Присоединение к комнате</h2>
+
                 <div class="form-input">
                     <input type="text" id="username" placeholder="Введите имя:">
                 </div>
+                
                 <div class="form-input">
                     <button id="join-user">Зарегистрироваться</button>
                 </div>
+
             </div>
         </div>
-        <div class="screen chat-screen active">
+
+        <div class="screen chat-screen active" id="chat">
+
             <div class="header">
                 <div class="logo">Чат</div>
-                <button id="exit-chat">Выход</button>
+                <button id="exit-chat" class="exit-btn">Выход</button>
             </div>
+
+
             <div class="messages">
+
                 <div class="message my-message">
                     <div>
                         <div class="name">You</div>
                         <div class="text">Hi</div>
                     </div>
                 </div>
+
                 <div class="update">
                     Нн вошел в чат 
                 </div>
+
                 <div class="message other-message">
                     <div>
                         <div class="name">Нн</div>
                         <div class="text">Hi</div>
                     </div>
                 </div>
+
             </div>
+
             <div class="typebox">
-                <input type="text" id="message-input">
+                <input type="text" id="message-input" placeholder="Введите сообщение:">
                 <button id="send-message">Отправить</button>
             </div>
+
         </div>
     </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
 </body>
