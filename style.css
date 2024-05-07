@@ -34,6 +34,8 @@ body {
 .screen {
 
     .form {
+        display: flex;
+        flex-direction: column;
         position: absolute;
         top: 40%;
         left: 50%;
@@ -43,6 +45,7 @@ body {
         border-radius: 15px;
 
         .form-input {
+            flex-direction: column;
             width: 100%;
             margin: 20px 0px;
             display: flex;
@@ -156,34 +159,60 @@ body {
     display: flex;
     flex-direction: column;
     padding: 20px;
+    overflow-y: scroll;
+    height: 87vh;
 
     .my-message {
         display: flex;
         width: max-content;
         align-self: flex-start;
-        background-color: gray;
-        border: 1px solid black;
+        margin-top: 10px;
         margin-bottom: 10px;
         padding: 10px;
+        gap: 15px;
         border-radius: 10px;
 
-        .name {
+        >.name {
+            color: black;
+            background-color: gray;
+            border: 1px solid black;
+            border-radius: 50px;
+            padding: 10px;
+        }
+
+        >.text {
             color: white;
+            background-color: gray;
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 10px;
         }
     }
 
     .other-message {
         display: flex;
-        background-color: gray;
-        border: 1px solid black;
-        margin-top: 10px;
         width: max-content;
-        align-self: flex-end;
+        align-self: flex-start;
+        margin-top: 10px;
+        margin-bottom: 10px;
         padding: 10px;
+        gap: 15px;
         border-radius: 10px;
 
-        .name {
+        >.name {
+            color: black;
+            background-color: gray;
+            border: 1px solid black;
+            border-radius: 50px;
+            padding: 10px;
+        }
+
+        >.text {
             color: white;
+            background-color: gray;
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 10px;
         }
     }
 
