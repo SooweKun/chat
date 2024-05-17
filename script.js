@@ -4,21 +4,28 @@ const auth = document.getElementById("auth")
 let username = document.getElementById("username")
 let messageInput = document.getElementById('message-input');
 
+const sendMessagestream = ({msg}) => {
+
+  axios.post('http://127.0.0.1:3000/stream', {
+
+    message: msg
+
+  })
+
+  .then((response) =>  console.log(response.data))
+  .catch( (error)  => console.error(error))
+}
+
 messageInput.addEventListener('keypress', function (event) {
 
-  if (event.key === 'Enter') {
-    sendMessage();
-  }
-
+  if (event.key === 'Enter') sendMessage();
 });
 
 username.addEventListener('keypress', function (event) {
 
-  if (event.key === 'Enter') {
-   console.log(username.value)
-  }
-});
+  if (event.key === 'Enter')  console.log(username.value)
 
+});
 
 document.getElementById("join-user").addEventListener("click", (e) => {
 
@@ -37,50 +44,51 @@ document.getElementById("exit-chat").addEventListener("click", (e) => {
 
 document.getElementById("join-user").addEventListener("click", (e) => {
 
-  console.log(username.value)
-
   const profileDiv = document.getElementById("username");
   const profileDivvalue = profileDiv.value.trim();
   const updatediv = document.createElement('p');
+
   updatediv.textContent = `Пользователь ${profileDivvalue} присоединился`;
   document.getElementById("user-joined").appendChild(updatediv);
 
 })
 
-function sendMessage() {
-
+const sendMessage = () => {
+  
   const InputValue = messageInput.value.trim();
-
-  if (InputValue) {
-    const messageDiv = createMessageDiv(username.value, InputValue);
-    document.getElementById("messages").appendChild(messageDiv);
-    username.value = '';
+  
+  if (!InputValue) {
+    throw new Error('пусто');
   }
+  
+  sendMessagestream({msg: InputValue});
+  const messageDiv = createMessageDiv(username.value, InputValue);
+  document.getElementById("messages").appendChild(messageDiv);
+
+
+  username.value = '';
+  messageInput.value = '';
 }
 
-document.getElementById("send-message").addEventListener("click", (e) => {
-
+document.getElementById("send-message").addEventListener("click", () => {
   sendMessage();
-
 });
 
-function createMessageDiv(name, text) {
+
+const createMessageDiv = (name, text) => {
 
   const messageDiv = document.createElement('div');
-  messageDiv.classList.add('my-message');
-
   const nameDiv = document.createElement('div');
+  const textDiv = document.createElement('div');
+
+  messageDiv.classList.add('my-message');
   nameDiv.classList.add('name');
   nameDiv.textContent = name;
-
-  const textDiv = document.createElement('div');
   textDiv.classList.add('text');
   textDiv.textContent = text;
-
 
   messageDiv.appendChild(nameDiv);
   messageDiv.appendChild(textDiv);
 
   return messageDiv;
-
 }
